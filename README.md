@@ -13,7 +13,7 @@
 ## Install
 
 ```sh
-npm install request-cache -S
+npm install request-dev-cache -S
 ```
 
 ## Usage
