@@ -9,7 +9,10 @@
 </p>
 
 ## Intro
-本地缓存 fetch 请求的结果，基于你自己定义的生成 key 的策略（默认是使用 `url + stringify(body)`）来把结果保存到本地存储中，在接口请求比较缓慢的时候提效非常明显。
+
+在本地开发的时候，有时候后端的接口非常慢，我们刷新页面调试的时候浪费在等待接口上的时间太长。但很多时候其实我们只是想要一份可用的数据来调试 UI 界面，并不是很关心数据的实时性。
+
+这个库就是用来解决上述问题的，`request-dev-cache` 会在 fetch 获取到结果的时候，基于你自己定义的生成 key 的策略（默认是使用 `url + JSON.stringify(body)`）来把结果保存到本地存储中，下次再请求相同的 key 的数据就可以不再经过后端，这在本地开发调试的时候有时非常有效。
 
 使用 [localforage](https://github.com/localForage/localForage) 这个库作为底层的存储，它默认采用 `IndexedDB` 进行本地存储。
 
@@ -64,6 +67,16 @@ startCache({
   },
 });
 ```
+
+### API
+
+#### window.cleanAllRequestDevCaches
+
+在控制台调用，清除所有的缓存。
+
+#### window.cleanRequestDevCache
+
+在控制台调用，根据输入的值模糊查询存储的 key 清除匹配到的所有缓存。
 
 ## Run tests
 
