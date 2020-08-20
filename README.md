@@ -8,7 +8,7 @@
   </a>
 </p>
 
-> 本地缓存请求的结果 加快开发速度
+> 本地缓存 fetch 请求的结果，基于你自己定义的生成 key 的策略（默认是使用 `url + stringify(body)`）来把结果保存到 localstorage 中，在接口请求比较缓慢的时候提效非常明显。
 
 ## Install
 
