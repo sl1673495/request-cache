@@ -62,7 +62,7 @@ startCache({
     const result = await response.json();
     return (
       response.headers.get('content-type') === 'application/json' &&
-      response.status === 200 &&
+      response.status === 200
     );
   },
 });
