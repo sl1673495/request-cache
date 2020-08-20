@@ -50,8 +50,8 @@ import { omit } from 'lodash'
 
 startCache({
   generateKey(url, body) {
-    // 可以排除掉一些你不想缓存的参数值
-    return `${url}-${JSON.stringify(omit(body, ['key1', 'key2']))}`;
+    // 由于默认情况下 拼接 key 的时候会把 body 里的所有属性都带上 有些变化特别频繁但是我们又不是很关心的 key （比如当前时间戳）就会导致缓存失效
+    return `${url}-${JSON.stringify(omit(body, ['currentTime']))}`;
   },
   shouldHandleRequest(url: string) {
     // 可以规定 /api 开头的请求才缓存
