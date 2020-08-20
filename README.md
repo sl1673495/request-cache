@@ -50,7 +50,9 @@ import { omit } from 'lodash'
 
 startCache({
   generateKey(url, body) {
-    // 由于默认情况下 拼接 key 的时候会把 body 里的所有属性都带上 有些变化特别频繁但是我们又不是很关心的 key （比如当前时间戳）就会导致缓存失效
+    // 由于默认情况下 拼接 key 的时候会把 body （请求参数）里的所有属性值都带上 
+    // 有些变化特别频繁但是我们又不是很关心的属性（比如当前时间戳）就会导致缓存失效
+    // 我们自定义生成 key 的策略 把这些属性排除掉
     return `${url}-${JSON.stringify(omit(body, ['currentTime']))}`;
   },
   shouldHandleRequest(url: string) {
