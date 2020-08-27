@@ -21,7 +21,7 @@ export const startCache = ({
   generateKey = defaultGenerateKey,
   shouldHandleRequest = () => true,
   shouldCacheResult = async () => true,
-}: CacheFetchOptions) => {
+}: CacheFetchOptions = {}) => {
   const parseBody = (options?: RequestInit) => {
     let { body: rawBody } = options ?? {};
     let body: object;
